@@ -11,14 +11,10 @@ public class Kalkulator {
         Scanner s = new Scanner(System.in);
 
         while (nextStep) {
-            System.out.println("Podaj 1 liczbe");
+            System.out.println("Podaj wyrażenie"); // 2 + 3
             liczba1 = s.nextDouble();
-            s.nextLine();
-            System.out.println("Podaj operator");
-            operator = s.nextLine();
-            System.out.println("Podaj 2 liczbe");
+            operator = s.next();
             liczba2 = s.nextDouble();
-            s.nextLine();
 
             wynik = switch (operator) {
                 case "+" -> liczba1 + liczba2;
@@ -46,6 +42,7 @@ public class Kalkulator {
 
             System.out.println(wynik);
             System.out.println("Chcesz kontynuowac?");
+            s.nextLine(); //wyczyszcza scanner przed zapytaniem, żeby nie zaskanował znaku, który nie podawaliśmy(Tutaj "Enter")
             nextStep = s.nextLine().equals("y");
         }
 
