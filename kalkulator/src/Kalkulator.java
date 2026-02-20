@@ -39,7 +39,13 @@ public class Kalkulator {
                     }
                     yield liczba1 / liczba2;
                 }
-                case "%" -> liczba1 % liczba2;
+                case "%" -> {
+                    if (liczba2 == 0) {
+                        System.out.print("Liczba2 jest zerem, nie mozna dzielic przez zero.");
+                        yield  null;
+                    }
+                    yield liczba1 % liczba2;
+                }
                 case "^" -> Math.pow(liczba1, liczba2);
                 default -> {
                     System.out.print("Podales zly operator.");
