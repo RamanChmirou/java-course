@@ -2,15 +2,15 @@ import java.util.Scanner;
 
 public class Kalkulator {
     public static void main(String[] args) {
-        double liczba1;
-        double liczba2;
-        String operator;
         Double wynik = null;
         boolean nextStep = true;
-
         Scanner s = new Scanner(System.in);
 
         while (nextStep) {
+            double liczba1;
+            double liczba2;
+            String operator;
+
             System.out.println("Podaj wyrażenie. Przykład: 3 + 2, 3 ^ 6");
             if (s.hasNextDouble()) {
                 liczba1 = s.nextDouble();
@@ -59,6 +59,5 @@ public class Kalkulator {
         }
 
         System.out.println(wynik % 2 == 0 ? "Ostatni wynik jest parzysty" : "Ostatni wynik jest nieparzysty");
-
     }
 }
