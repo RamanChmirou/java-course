@@ -11,10 +11,22 @@ public class Kalkulator {
         Scanner s = new Scanner(System.in);
 
         while (nextStep) {
-            System.out.println("Podaj wyrażenie"); // 2 + 3
-            liczba1 = s.nextDouble();
+            System.out.println("Podaj wyrażenie. Przykład: 3 + 2, 3 ^ 6");
+            if (s.hasNextDouble()) {
+                liczba1 = s.nextDouble();
+            } else {
+                System.out.println("Podałeś wyrażenie nie zgodne z przykładem");
+                s.nextLine();
+                continue;
+            }
             operator = s.next();
-            liczba2 = s.nextDouble();
+            if (s.hasNextDouble()) {
+                liczba2 = s.nextDouble();
+            } else {
+                System.out.println("Podałeś wyrażenie nie zgodne z przykładem");
+                s.nextLine();
+                continue;
+            }
 
             wynik = switch (operator) {
                 case "+" -> liczba1 + liczba2;
