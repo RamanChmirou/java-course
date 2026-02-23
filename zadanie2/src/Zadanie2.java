@@ -4,12 +4,12 @@ public class Zadanie2 {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 //      Zadanie 1
-        System.out.println("Podaj długość i szerokość prostokonta(9,14)");
+        System.out.println("Podaj długość i szerokość prostokonta(naprzykład: 9, 14)");
         String answer = s.nextLine().replaceAll(" ", "");
         int a = Integer.parseInt(answer.split(",")[0]);
         int b = Integer.parseInt(answer.split(",")[1]);
-        for (int i = 0; i < a; i++) {
-            for (int j = 0; j < b; j++) {
+        for (int i = 0; i < b; i++) {
+            for (int j = 0; j < a; j++) {
                 System.out.print("*");
             }
             System.out.println();
@@ -40,6 +40,26 @@ public class Zadanie2 {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 System.out.print(matrix[i][j]);
+            }
+            System.out.println();
+        }
+//      Zadanie 4
+        System.out.println("Podaj długość i szerokość prostokonta(naprzykład: 9, 14)");
+        s.nextLine();
+        String answer2 = s.nextLine().replaceAll(" ", "");
+        int a2 = Integer.parseInt(answer2.split(",")[0]);
+        int b2 = Integer.parseInt(answer2.split(",")[1]);
+        for (int i = 0; i < b2; i++) {
+            if (i == 0 || i == b2 - 1) {
+                for (int j = 0; j < a2; j++) {
+                    System.out.print("*");
+                }
+            } else {
+                System.out.print("*");
+                for (int j = 0; j < a2 - 2; j++) {
+                    System.out.print(" ");
+                }
+                System.out.print("*");
             }
             System.out.println();
         }
