@@ -38,8 +38,8 @@ public class Zadanie2 {
                 matrix[i][j] = ++number;
             }
         }
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < MATRIX_SIZE; i++) {
+            for (int j = 0; j < MATRIX_SIZE; j++) {
                 System.out.print(matrix[i][j]);
             }
             System.out.println();
