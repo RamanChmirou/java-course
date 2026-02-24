@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Zadanie2 {
-    private final static int MATRIX_SIZE = 3;
+    private static final int MATRIX_SIZE = 3;
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 //      Zadanie 1
