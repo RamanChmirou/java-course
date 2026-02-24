@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Zadanie2 {
+    private final static int MATRIX_SIZE = 3;
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 //      Zadanie 1
@@ -30,10 +31,10 @@ public class Zadanie2 {
             System.out.println();
         }
 //      Zadanie 3
-        int [][] matrix = new int[3][3];
+        int [][] matrix = new int[MATRIX_SIZE][MATRIX_SIZE];
         int number = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < MATRIX_SIZE; i++) {
+            for (int j = 0; j < MATRIX_SIZE; j++) {
                 matrix[i][j] = ++number;
             }
         }
