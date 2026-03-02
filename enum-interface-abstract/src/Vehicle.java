@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 public abstract class Vehicle implements Drivable{
     String brand;
     String model;
@@ -26,6 +28,8 @@ public abstract class Vehicle implements Drivable{
         } else {
             capacity += amount;
         }
+        System.out.printf("Cena paliwa: %.2f", fuelType.getPricePerUnit().multiply(BigDecimal.valueOf(amount)));
+        System.out.println();
     }
 
     public void drive(long distance) {

@@ -1,16 +1,18 @@
-public enum FuelType {
-    PETROL("Petrol", 1000),
-    DISEL("Disel", 2000),
-    ELECTRIC("Electric", 3000);
-    private final String name;
-    private final double pricePerUnit;
+import java.math.BigDecimal;
 
-    FuelType(String name, double cena) {
+public enum FuelType {
+    PETROL("Petrol", BigDecimal.valueOf(1000)),
+    DISEL("Disel", BigDecimal.valueOf(2000)),
+    ELECTRIC("Electric", BigDecimal.valueOf(3000));
+    private final String name;
+    private final BigDecimal pricePerUnit;
+
+    FuelType(String name, BigDecimal cena) {
         this.name = name;
         this.pricePerUnit = cena;
     }
 
-    public double getPricePerUnit() {
+    public BigDecimal getPricePerUnit() {
         return pricePerUnit;
     }
 
