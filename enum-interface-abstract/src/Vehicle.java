@@ -28,8 +28,7 @@ public abstract class Vehicle implements Drivable{
         } else {
             capacity += amount;
         }
-        System.out.printf("Cena paliwa: %.2f", fuelType.getPricePerUnit().multiply(BigDecimal.valueOf(amount)));
-        System.out.println();
+        System.out.printf("Cena paliwa: %.2f\n", fuelType.getPricePerUnit().multiply(BigDecimal.valueOf(amount)));
     }
 
     public void drive(long distance) {
