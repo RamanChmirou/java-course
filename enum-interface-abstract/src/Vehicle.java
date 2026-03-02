@@ -1,21 +1,21 @@
-public abstract class Vehicle {
+public abstract class Vehicle implements Drivable{
     String brand;
     String model;
     int year;
     FuelType fuelType;
     double capacity;
     double maxCapacity;
+    double fuelConsumption;
 
-    public Vehicle (String brand, String model, int year, FuelType fuelType, double capacity, double maxCapacity) {
+    public Vehicle (String brand, String model, int year, FuelType fuelType, double capacity, double maxCapacity, double fuelConsumption) {
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.fuelType = fuelType;
         this.capacity = capacity;
         this.maxCapacity = maxCapacity;
+        this.fuelConsumption = fuelConsumption;
     }
-
-    public Vehicle (){}
 
     public abstract void displayInfo();
 
@@ -25,6 +25,17 @@ public abstract class Vehicle {
             System.out.println("Za dużo paliwa");
         } else {
             capacity += amount;
+        }
+    }
+
+    public void drive(long distance) {
+        if (capacity - distance * fuelConsumption <= 0) {
+            long permissibleDistance = (long) (capacity / fuelConsumption);
+            System.out.printf("przejechałes tylko %d", permissibleDistance);
+            System.out.println();
+            capacity = 0;
+        } else {
+            capacity -= distance * fuelConsumption;
         }
     }
 }
