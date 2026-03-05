@@ -13,12 +13,12 @@ public class Stack {
         if (head == null) {
             System.err.println("Nie ma żadnego elemetu na stosie");
             return null;
-        } else {
-            int v = head.getValue();
-            head = head.getNext();
-            size--;
-            return v;
         }
+        int v = head.getValue();
+        head = head.getNext();
+        size--;
+        return v;
+
     }
 
     public int size() {
@@ -34,12 +34,13 @@ public class Stack {
                 dummy = dummy.getNext();
             }
             dummy.setNext(new Node(value, null));
-            size++;
         }
+        size++;
     }
 
     public void remove(int value) {
         if (head == null) {
+            System.err.println("Nie ma żadnego elemetu na stosie");
             return;
         }
 
@@ -49,14 +50,14 @@ public class Stack {
             return;
         }
 
-        Node temp = head;
-        while (temp.getNext() != null) {
-            if (temp.getNext().getValue() == value) {
-                temp.setNext(temp.getNext().getNext());
+        Node dummy = head;
+        while (dummy.getNext() != null) {
+            if (dummy.getNext().getValue() == value) {
+                dummy.setNext(dummy.getNext().getNext());
                 size--;
                 return;
             }
-            temp = temp.getNext();
+            dummy = dummy.getNext();
         }
     }
 }
