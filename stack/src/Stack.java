@@ -9,11 +9,16 @@ public class Stack {
         size++;
     }
 
-    public int pop() {
-        int v = head.getValue();
-        head = head.getNext();
-        size--;
-        return v;
+    public Integer pop() {
+        if (head == null) {
+            System.err.println("Nie ma żadnego elemetu na stosie");
+            return null;
+        } else {
+            int v = head.getValue();
+            head = head.getNext();
+            size--;
+            return v;
+        }
     }
 
     public int size() {
@@ -21,25 +26,39 @@ public class Stack {
     }
 
     public void addFirst(int value) {
-        Node dummy = head;
-        while (dummy.getNext() != null) {
-            dummy = dummy.getNext();
+        if (head == null) {
+            this.push(value);
+        } else {
+            Node dummy = head;
+            while (dummy.getNext() != null) {
+                dummy = dummy.getNext();
+            }
+            dummy.setNext(new Node(value, null));
+            size++;
         }
-        dummy.setNext(new Node(value, null));
-        size++;
     }
 
     public void remove(int value) {
+        if (head == null) {
+            System.err.println("Nie ma żadnego elemetu na stosie");
+            return;
+            }
         if (head.getValue() == value) {
             head = head.getNext();
-        } else if (head.getNext().getValue() == value) {
-            head.setNext(head.getNext().getNext());
         } else {
-            Node dummy = head;
-            while (dummy.getNext().getNext().getValue() != value) {
-                dummy = dummy.getNext();
+            if (head.getNext() == null) {
+                System.err.println("Nie ma takiego elemetu na stosie");
+                return;
             }
-            dummy.getNext().setNext(dummy.getNext().getNext().getNext());
+            Node dummy = head;
+            while (dummy.getNext().getValue() != value) {
+                dummy = dummy.getNext();
+                if (dummy.getNext() == null) {
+                    System.err.println("Nie ma takiego elemetu na stosie");
+                    return;
+                }
+            }
+            dummy.getNext().setNext(dummy.getNext().getNext());
         }
         size--;
     }
