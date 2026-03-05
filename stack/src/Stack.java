@@ -40,26 +40,23 @@ public class Stack {
 
     public void remove(int value) {
         if (head == null) {
-            System.err.println("Nie ma żadnego elemetu na stosie");
             return;
-            }
+        }
+
         if (head.getValue() == value) {
             head = head.getNext();
-        } else {
-            if (head.getNext() == null) {
-                System.err.println("Nie ma takiego elemetu na stosie");
+            size--;
+            return;
+        }
+
+        Node temp = head;
+        while (temp.getNext() != null) {
+            if (temp.getNext().getValue() == value) {
+                temp.setNext(temp.getNext().getNext());
+                size--;
                 return;
             }
-            Node dummy = head;
-            while (dummy.getNext().getValue() != value) {
-                dummy = dummy.getNext();
-                if (dummy.getNext() == null) {
-                    System.err.println("Nie ma takiego elemetu na stosie");
-                    return;
-                }
-            }
-            dummy.getNext().setNext(dummy.getNext().getNext());
+            temp = temp.getNext();
         }
-        size--;
     }
 }
