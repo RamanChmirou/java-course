@@ -1,40 +1,97 @@
 public class Main {
     public static void main(String[] args) {
-        Stack stack = new Stack();
-        stack.addFirst(0);
-        stack.remove(10);
-
+        Stack<String> stack = new Stack<>();
         System.out.printf("size = %d\n", stack.size());
-        stack.push(1);
-
-
+        stack.push("1");
         System.out.printf("size = %d\n", stack.size());
-        stack.push(2);
+        stack.push("2");
         System.out.printf("size = %d\n", stack.size());
-        stack.push(3);
+        stack.push("dddddddd");
         System.out.printf("size = %d\n", stack.size());
         System.out.printf("pop = %s\n", stack.pop());
         System.out.printf("size = %d\n", stack.size());
-        stack.addFirst(4);
+        stack.addFirst("aaaaaaaa");
         System.out.printf("size = %d\n", stack.size());
         System.out.printf("pop = %s\n", stack.pop());
         System.out.printf("pop = %s\n", stack.pop());
         System.out.printf("pop = %s\n", stack.pop());
         System.out.printf("pop = %s\n", stack.pop());
         System.out.printf("pop = %s\n", stack.pop());
-
         System.out.println();
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        stack.push(4);
-        stack.push(5);
+        stack.push("q");
+        stack.push("w");
+        stack.push("e");
+        stack.push("r");
+        stack.push("t");
+        stack.remove("gh");
         System.out.printf("size = %d\n", stack.size());
         System.out.printf("size = %d\n", stack.size());
         System.out.printf("pop = %s\n", stack.pop());
         System.out.printf("pop = %s\n", stack.pop());
         System.out.printf("pop = %s\n", stack.pop());
         System.out.printf("pop = %s\n", stack.pop());
-        System.out.printf("size = %s\n", stack.size());
+        System.out.printf("size = %s\n\n\n", stack.size());
+
+        Stack<Pair<Integer, String>> pairStack = new Stack<>();
+        Pair<Integer, String> pair1 = new Pair<>(1, "a");
+        Pair<Integer, String> pair2 = new Pair<>(2, "b");
+        Pair<Integer, String> pair3 = new Pair<>(3, "c");
+        Pair<Integer, String> pair4 = new Pair<>(4, "d");
+        Pair<Integer, String> pair5 = new Pair<>(5, "e");
+        pairStack.push(pair1);
+        pairStack.push(pair2);
+        pairStack.push(pair3);
+        pairStack.push(pair4);
+        pairStack.push(pair5);
+        System.out.printf("size = %s\n", pairStack.size());
+        pairStack.remove(new Pair<>(1, "a"));
+        pairStack.remove(new Pair<>(7, "a"));
+        pairStack.remove(new Pair<>(3, "a"));
+        System.out.printf("size = %s\n", pairStack.size());
+        System.out.printf("pop = %s\n", pairStack.pop());
+        System.out.printf("pop = %s\n", pairStack.pop());
+        System.out.printf("pop = %s\n", pairStack.pop());
+        System.out.printf("size = %s\n", pairStack.size());
+        System.out.printf("pop = %s\n", pairStack.pop());
+        System.out.printf("size = %s\n", pairStack.size());
+        System.out.printf("pop = %s\n", pairStack.pop());
+        System.out.printf("pop = %s\n", pairStack.pop());
+        System.out.printf("size = %s\n\n\n", pairStack.size());
+
+        Stack<Triple<Integer, String, Pair<Integer, String>>> tripleStack = new Stack<>();
+        Pair<Integer, String> pair11 = new Pair<>(1, "a");
+        Pair<Integer, String> pair22 = new Pair<>(2, "b");
+        Pair<Integer, String> pair33 = new Pair<>(3, "c");
+        Pair<Integer, String> pair44 = new Pair<>(4, "d");
+        Pair<Integer, String> pair55 = new Pair<>(5, "e");
+        Triple<Integer, String, Pair<Integer, String>> triple1 = new Triple<>(1,"a", pair11);
+        Triple<Integer, String, Pair<Integer, String>> triple2 = new Triple<>(2,"b", pair22);
+        Triple<Integer, String, Pair<Integer, String>> triple3 = new Triple<>(3,"c", pair33);
+        Triple<Integer, String, Pair<Integer, String>> triple4 = new Triple<>(4,"d", pair44);
+        Triple<Integer, String, Pair<Integer, String>> triple5 = new Triple<>(5,"e", pair55);
+        tripleStack.push(triple1);
+        tripleStack.push(triple2);
+        tripleStack.push(triple3);
+        tripleStack.push(triple4);
+        tripleStack.push(triple5);
+        System.out.printf("size = %s\n", tripleStack.size());
+        tripleStack.remove(new Triple<>(1, "a", new Pair<>(1, "a")));
+        tripleStack.remove(new Triple<>(2, "a", new Pair<>(1, "a")));
+        tripleStack.remove(new Triple<>(1, "b", new Pair<>(1, "a")));
+        System.out.printf("size = %s\n", tripleStack.size());
+        System.out.printf("pop = %s\n", tripleStack.pop());
+        System.out.printf("pop = %s\n", tripleStack.pop());
+        System.out.printf("pop = %s\n", tripleStack.pop());
+        System.out.printf("size = %s\n", tripleStack.size());
+        System.out.printf("pop = %s\n", tripleStack.pop());
+        System.out.printf("size = %s\n", tripleStack.size());
+        System.out.printf("pop = %s\n", tripleStack.pop());
+        System.out.printf("pop = %s\n", tripleStack.pop());
+        System.out.printf("size = %s\n", tripleStack.size());
+        tripleStack.addFirst(new Triple<>(1, "b", new Pair<>(1, "a")));
+        System.out.printf("size = %s\n", tripleStack.size());
+        tripleStack.remove(new Triple<>(1, "b", new Pair<>(1, "a")));
+        System.out.printf("size = %s\n", tripleStack.size());
+
     }
 }

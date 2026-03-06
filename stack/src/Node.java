@@ -1,21 +1,21 @@
-public class Node {
-    private final int value;
-    private Node next;
+public class Node <T>{
+    private final T value;
+    private Node<T> next;
 
-    public Node(int value, Node node) {
+    public Node(T value, Node<T> node) {
         this.value = value;
         this.next = node;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public int getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 }

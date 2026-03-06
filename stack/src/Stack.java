@@ -1,58 +1,57 @@
-public class Stack {
-    private Node head;
+public class Stack <T>{
+    private Node<T> head;
     private int size = 0;
 
     public Stack(){}
 
-    public void push(int value) {
-        head = new Node(value, head);
+    public void push(T value) {
+        head = new Node<>(value, head);
         size++;
     }
 
-    public Integer pop() {
+    public T pop() {
         if (head == null) {
             System.err.println("Nie ma żadnego elemetu na stosie");
             return null;
         }
-        int v = head.getValue();
+        T v = head.getValue();
         head = head.getNext();
         size--;
         return v;
-
     }
 
     public int size() {
         return size;
     }
 
-    public void addFirst(int value) {
+    public void addFirst(T value) {
         if (head == null) {
             this.push(value);
         } else {
-            Node dummy = head;
+            Node<T> dummy = head;
             while (dummy.getNext() != null) {
                 dummy = dummy.getNext();
             }
-            dummy.setNext(new Node(value, null));
+            dummy.setNext(new Node<>(value, null));
+            size++;
         }
-        size++;
     }
 
-    public void remove(int value) {
+    public void remove(T value) {
         if (head == null) {
             System.err.println("Nie ma żadnego elemetu na stosie");
             return;
         }
 
-        if (head.getValue() == value) {
+        if (head.getValue().equals(value)) {
             head = head.getNext();
             size--;
             return;
         }
 
-        Node dummy = head;
+        Node<T> dummy = head;
         while (dummy.getNext() != null) {
-            if (dummy.getNext().getValue() == value) {
+            if (dummy.getNext().getValue().equals(value)) {
                 dummy.setNext(dummy.getNext().getNext());
                 size--;
                 return;
