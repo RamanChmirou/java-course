@@ -14,14 +14,6 @@ public class Book  extends LibraryItem{
         return numberOfBooks;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public int getNumberOfPages() {
-        return numberOfPages;
-    }
-
     @Override
     public String toString() {
         return String.format("Książka| Tytuł: %s, Autor: %s, Ilość stron: %s", super.getTitle(), author, numberOfPages);

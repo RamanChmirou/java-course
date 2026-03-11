@@ -14,14 +14,6 @@ public class Movie extends  LibraryItem{
         return numberOfMovies;
     }
 
-    public String getDirector() {
-        return director;
-    }
-
-    public int getDurationMovie() {
-        return durationMovie;
-    }
-
     @Override
     public String toString() {
         return String.format("Filmik| Tytuł: %s, Reżyser: %s, Długość filmika: %s", super.getTitle(), director, durationMovie);
