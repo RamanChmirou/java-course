@@ -1,3 +1,6 @@
+package Service;
+
+import Entity.LibraryItem;
 import Exceptions.ItemAlreadyAvailableException;
 import Exceptions.ItemAlreadyExistsException;
 import Exceptions.ItemAlreadyNotAvailableException;
@@ -6,7 +9,7 @@ import Exceptions.ItemNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public record Library(List<LibraryItem> items) {
+public record LibraryService(List<LibraryItem> items) {
     public LibraryItem findByTitle(String title) throws ItemNotFoundException {
         for (LibraryItem item : items) {
             if (item.getTitle().equalsIgnoreCase(title)) {

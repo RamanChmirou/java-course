@@ -1,4 +1,6 @@
-public class Book  extends LibraryItem{
+package Entity;
+
+public class Book  extends LibraryItem {
     private final String author;
     private final int numberOfPages;
     private static int numberOfBooks;

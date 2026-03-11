@@ -1,3 +1,5 @@
+package Entity;
+
 public abstract class LibraryItem {
     private final String title;
     private boolean isAvailable;

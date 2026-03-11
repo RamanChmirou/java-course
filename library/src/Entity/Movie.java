@@ -1,3 +1,5 @@
+package Entity;
+
 public class Movie extends  LibraryItem{
     private final String director;
     private final int durationMovie;
