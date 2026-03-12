@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 public class Book  extends LibraryItem {
     private final String author;

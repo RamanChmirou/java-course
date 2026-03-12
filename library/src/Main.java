@@ -1,9 +1,6 @@
-import Controller.LibraryController;
-import Exceptions.ItemAlreadyExistsException;
-
 public class Main {
-    public static void main(String[] args) throws ItemAlreadyExistsException {
-        LibraryController libraryInterface = new LibraryController();
+    public static void main(String[] args) {
+        LibraryInterface libraryInterface = new LibraryInterface();
         libraryInterface.addTestData();
         libraryInterface.start();
     }

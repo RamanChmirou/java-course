@@ -1,34 +1,35 @@
-package Controller;
-
-import Entity.Book;
-import Entity.LibraryItem;
-import Entity.Movie;
-import Exceptions.ItemAlreadyAvailableException;
-import Exceptions.ItemAlreadyExistsException;
-import Exceptions.ItemAlreadyNotAvailableException;
-import Exceptions.ItemNotFoundException;
-import Service.LibraryService;
+import entity.Book;
+import entity.LibraryItem;
+import entity.Movie;
+import exception.ItemAlreadyAvailableException;
+import exception.ItemAlreadyExistsException;
+import exception.ItemAlreadyNotAvailableException;
+import exception.ItemNotFoundException;
+import service.LibraryService;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LibraryController {
+public class LibraryInterface {
     private static final LibraryService library = new LibraryService(new ArrayList<>());
     private static final Scanner scanner = new Scanner(System.in);
 
-    public void addTestData() throws ItemAlreadyExistsException {
+    public void addTestData() {
         Book book1 = new Book("book1", true, "author1", 354);
         Book book2 = new Book("book2", true, "author1", 502);
         Book book3 = new Book("book3", true, "author2", 1243);
         Movie movie1 = new Movie("movie1", true, "director1", 302);
         Movie movie2 = new Movie("movie2", true, "director2", 230);
-        library.addItem(book1);
-        library.addItem(book2);
-        library.addItem(book3);
-        library.addItem(movie1);
-        library.addItem(movie2);
+        try {
+            library.addItem(book1);
+            library.addItem(book2);
+            library.addItem(book3);
+            library.addItem(movie1);
+            library.addItem(movie2);
+        } catch (ItemAlreadyExistsException e) {
+            System.out.println(e.getMessage());
+        }
     }
-
 
     public void start() {
         boolean continueProgram = true;
@@ -49,7 +50,6 @@ public class LibraryController {
             } catch (ItemAlreadyNotAvailableException | ItemAlreadyAvailableException | ItemNotFoundException e) {
                 System.out.println(e.getMessage());
             }
-
         }
         sayBye();
     }

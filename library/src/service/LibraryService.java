@@ -1,10 +1,10 @@
-package Service;
+package service;
 
-import Entity.LibraryItem;
-import Exceptions.ItemAlreadyAvailableException;
-import Exceptions.ItemAlreadyExistsException;
-import Exceptions.ItemAlreadyNotAvailableException;
-import Exceptions.ItemNotFoundException;
+import entity.LibraryItem;
+import exception.ItemAlreadyAvailableException;
+import exception.ItemAlreadyExistsException;
+import exception.ItemAlreadyNotAvailableException;
+import exception.ItemNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public record LibraryService(List<LibraryItem> items) {
         }
     }
 
-    public void borrowItem(String title) throws ItemAlreadyNotAvailableException, ItemNotFoundException {
+    public void borrowItem(String title) throws ItemNotFoundException {
         LibraryItem item = findByTitle(title);
         if (item.isAvailable()) {
             item.setIsAvailable(false);
@@ -37,7 +37,7 @@ public record LibraryService(List<LibraryItem> items) {
         throw new ItemAlreadyNotAvailableException("Przedmiot nie jest dostępny.");
     }
 
-    public void returnItem(String title) throws ItemAlreadyAvailableException, ItemNotFoundException {
+    public void returnItem(String title) throws ItemNotFoundException {
         LibraryItem item = findByTitle(title);
         if (!item.isAvailable()) {
             item.setIsAvailable(true);
