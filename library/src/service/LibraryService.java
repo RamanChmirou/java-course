@@ -8,30 +8,29 @@ import exception.ItemNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public record LibraryService(List<LibraryItem> items) {
-    public LibraryItem findByTitle(String title) {
+    public Optional<LibraryItem> findByTitle(String title) {
         for (LibraryItem item : items) {
             if (item.getTitle().equalsIgnoreCase(title)) {
-                return item;
+                return Optional.of(item);
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     public void addItem(LibraryItem addedItem) throws ItemAlreadyExistsException {
-        LibraryItem item = findByTitle(addedItem.getTitle());
-        if (item != null) {
+        Optional<LibraryItem> item = findByTitle(addedItem.getTitle());
+        if (item.isPresent()) {
             throw new ItemAlreadyExistsException("Przedmiot już istnieje.");
         }
         items.add(addedItem);
     }
 
     public void borrowItem(String title) throws ItemNotFoundException {
-        LibraryItem item = findByTitle(title);
-        if (item == null) {
-            throw new ItemNotFoundException("Przedmiot jeszcze nie istnieje.");
-        }
+        Optional<LibraryItem> itemOptional = findByTitle(title);
+        LibraryItem item = itemOptional.orElseThrow(() -> new ItemNotFoundException("\"Przedmiot jeszcze nie istnieje.\""));
         if (!item.isAvailable()) {
             throw new ItemAlreadyNotAvailableException("Przedmiot nie jest dostępny.");
         }
@@ -39,10 +38,8 @@ public record LibraryService(List<LibraryItem> items) {
     }
 
     public void returnItem(String title) throws ItemNotFoundException {
-        LibraryItem item = findByTitle(title);
-        if (item == null) {
-            throw new ItemNotFoundException("Przedmiot jeszcze nie istnieje.");
-        }
+        Optional<LibraryItem> itemOptional = findByTitle(title);
+        LibraryItem item = itemOptional.orElseThrow(() -> new ItemNotFoundException("\"Przedmiot jeszcze nie istnieje.\""));
         if (item.isAvailable()) {
             throw new ItemAlreadyAvailableException("Przedmiot już jest dostępny, a z powodu tego że nie mamy kopji, nie mozesz zwracać tego przedmiotu.");
         }
