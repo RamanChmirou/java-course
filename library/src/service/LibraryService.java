@@ -10,40 +10,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public record LibraryService(List<LibraryItem> items) {
-    public LibraryItem findByTitle(String title) throws ItemNotFoundException {
+    public LibraryItem findByTitle(String title) {
         for (LibraryItem item : items) {
             if (item.getTitle().equalsIgnoreCase(title)) {
                 return item;
             }
         }
-        throw new ItemNotFoundException("Nie ma takiego przedmiotu lub wprowadziłes nie prawidłowy tytuł.");
+        return null;
     }
 
     public void addItem(LibraryItem addedItem) throws ItemAlreadyExistsException {
-        try {
-            findByTitle(addedItem.getTitle());
+        LibraryItem item = findByTitle(addedItem.getTitle());
+        if (item != null) {
             throw new ItemAlreadyExistsException("Przedmiot już istnieje.");
-        } catch (ItemNotFoundException e) {
-            items.add(addedItem);
         }
+        items.add(addedItem);
     }
 
     public void borrowItem(String title) throws ItemNotFoundException {
         LibraryItem item = findByTitle(title);
-        if (item.isAvailable()) {
-            item.setIsAvailable(false);
-            return;
+        if (item == null) {
+            throw new ItemNotFoundException("Przedmiot jeszcze nie istnieje.");
         }
-        throw new ItemAlreadyNotAvailableException("Przedmiot nie jest dostępny.");
+        if (!item.isAvailable()) {
+            throw new ItemAlreadyNotAvailableException("Przedmiot nie jest dostępny.");
+        }
+        item.setIsAvailable(false);
     }
 
     public void returnItem(String title) throws ItemNotFoundException {
         LibraryItem item = findByTitle(title);
-        if (!item.isAvailable()) {
-            item.setIsAvailable(true);
-            return;
+        if (item == null) {
+            throw new ItemNotFoundException("Przedmiot jeszcze nie istnieje.");
         }
-        throw new ItemAlreadyAvailableException("Przedmiot już jest dostępny, a z powodu tego że nie mamy kopji, nie mozesz zwracać tego przedmiotu.");
+        if (item.isAvailable()) {
+            throw new ItemAlreadyAvailableException("Przedmiot już jest dostępny, a z powodu tego że nie mamy kopji, nie mozesz zwracać tego przedmiotu.");
+        }
+        item.setIsAvailable(true);
     }
 
     public List<LibraryItem> listAvailableItems() {
