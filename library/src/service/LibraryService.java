@@ -29,8 +29,7 @@ public record LibraryService(List<LibraryItem> items) {
     }
 
     public void borrowItem(String title) throws ItemNotFoundException {
-        Optional<LibraryItem> itemOptional = findByTitle(title);
-        LibraryItem item = itemOptional.orElseThrow(() -> new ItemNotFoundException("\"Przedmiot jeszcze nie istnieje.\""));
+        LibraryItem item = findByTitle(title).orElseThrow(() -> new ItemNotFoundException("\"Przedmiot jeszcze nie istnieje.\""));
         if (!item.isAvailable()) {
             throw new ItemAlreadyNotAvailableException("Przedmiot nie jest dostępny.");
         }
@@ -38,8 +37,7 @@ public record LibraryService(List<LibraryItem> items) {
     }
 
     public void returnItem(String title) throws ItemNotFoundException {
-        Optional<LibraryItem> itemOptional = findByTitle(title);
-        LibraryItem item = itemOptional.orElseThrow(() -> new ItemNotFoundException("\"Przedmiot jeszcze nie istnieje.\""));
+        LibraryItem item = findByTitle(title).orElseThrow(() -> new ItemNotFoundException("\"Przedmiot jeszcze nie istnieje.\""));
         if (item.isAvailable()) {
             throw new ItemAlreadyAvailableException("Przedmiot już jest dostępny, a z powodu tego że nie mamy kopji, nie mozesz zwracać tego przedmiotu.");
         }
