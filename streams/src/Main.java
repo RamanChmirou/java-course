@@ -41,7 +41,15 @@ public class Main {
         System.out.println(result);
 
         Map<Currency, List<String>> listMap = Exercises.currencyListMap();
-        listMap.forEach((k, v) -> System.out.printf("%s: %s", k, v));
+        listMap.forEach((k, v) -> System.out.printf("%s: %s\n", k, v));
+        System.out.println("-----------");
+        System.out.println(Exercises.getAllCompaniesNamesAsLinkedList());
+        System.out.println("-----------");
+        System.out.println(Exercises.getUserPerCompany());
+        System.out.println("-----------");
+        System.out.println(Exercises.getRichestWoman());
+        System.out.println("-----------");
+        System.out.println(Exercises.getUsersForPredicate(u -> u.getAge() > 18));
     }
 
     public static List<Integer> predicate(List<Integer> list, Predicate<Integer> predicate) {
