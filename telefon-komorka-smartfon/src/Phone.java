@@ -11,10 +11,10 @@ public class Phone {
     }
 
     public void call(String number) throws WrongNumberFormatException{
-        if (numberIsMatchesToFormat(number)) {
+        if (!numberIsMatchesToFormat(number)) {
             throw new WrongNumberFormatException("Zły format numeru. Może być tylko taki: XXX-XXX-XXX.");
         }
-        System.out.printf("Dzwonie pod numer: %s.\n", number);
+        System.out.printf("Zadzwoniłem pod numer: %s.\n", number);
     }
 
     private static boolean numberIsMatchesToFormat(String number) {
