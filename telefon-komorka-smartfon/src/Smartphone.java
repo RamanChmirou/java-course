@@ -10,7 +10,7 @@ public class Smartphone extends MobilePhone {
         super(communicationInterface, color);
     }
 
-    public void addPerson(Person person) {
+    public void addFriend (Person person) {
         listOfFriends.add(person);
     }
 
@@ -21,7 +21,7 @@ public class Smartphone extends MobilePhone {
                     .filter(person -> person.getNumber().equals(call))
                     .findFirst();
             foundPerson.ifPresentOrElse(
-                    person -> System.out.println(person.getFirstName() + " " + person.getLastName() + person.getNumber()),
+                    person -> System.out.printf("%s %s %s\n", person.getFirstName(), person.getLastName(), person.getNumber()),
                     () -> System.out.println(call)
             );
         });
