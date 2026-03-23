@@ -6,18 +6,14 @@ import exception.ItemAlreadyExistsException;
 import exception.ItemAlreadyNotAvailableException;
 import exception.ItemNotFoundException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public record LibraryService(List<LibraryItem> items) {
     public Optional<LibraryItem> findByTitle(String title) {
-        for (LibraryItem item : items) {
-            if (item.getTitle().equalsIgnoreCase(title)) {
-                return Optional.of(item);
-            }
-        }
-        return Optional.empty();
+        return items.stream()
+                .filter(t -> t.getTitle().equalsIgnoreCase(title))
+                .findFirst();
     }
 
     public void addItem(LibraryItem addedItem) throws ItemAlreadyExistsException {
@@ -45,12 +41,8 @@ public record LibraryService(List<LibraryItem> items) {
     }
 
     public List<LibraryItem> listAvailableItems() {
-        List<LibraryItem> result = new ArrayList<>();
-        for (LibraryItem item : items) {
-            if (item.isAvailable()) {
-                result.add(item);
-            }
-        }
-        return result;
+        return items.stream()
+                .filter(LibraryItem::isAvailable)
+                .toList();
     }
 }

@@ -108,17 +108,13 @@ public class LibraryInterface {
 
     public static void showItemsAvailability() {
         System.out.println("Wypożyczone:");
-        for (LibraryItem item : library.items()) {
-            if (!item.isAvailable()) {
-                System.out.println(item);
-            }
-        }
+        library.items().stream()
+                .filter(item -> !item.isAvailable())
+                .forEach(System.out::println);
         System.out.println("Dostępne:");
-        for (LibraryItem item : library.items()) {
-            if (item.isAvailable()) {
-                System.out.println(item);
-            }
-        }
+        library.items().stream()
+                .filter(LibraryItem::isAvailable)
+                .forEach(System.out::println);
     }
 
     public static void showItemsQuantity() {
