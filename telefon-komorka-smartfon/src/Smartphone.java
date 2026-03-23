@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Smartphone extends MobilePhone {
-    private final List<Person> listOfFriends= new ArrayList<>();
+    private static final List<Person> listOfFriends= new ArrayList<>();
 
     public Smartphone(String communicationInterface, Color color) {
         super(communicationInterface, color);
@@ -14,16 +14,19 @@ public class Smartphone extends MobilePhone {
         listOfFriends.add(person);
     }
 
+    private static Optional<Person> callIsFriend(String number) {
+        return listOfFriends.stream()
+                .filter(person -> person.getNumber().equals(number))
+                .findFirst();
+    }
+
     @Override
     public void showCallHistory() {
-        callHistory.forEach(call -> {
-            Optional<Person> foundPerson = listOfFriends.stream()
-                    .filter(person -> person.getNumber().equals(call))
-                    .findFirst();
-            foundPerson.ifPresentOrElse(
-                    person -> System.out.printf("%s %s %s\n", person.getFirstName(), person.getLastName(), person.getNumber()),
+        callHistory.forEach(call ->
+            callIsFriend(call).ifPresentOrElse(
+                    person -> System.out.printf("%s %s %s\n",
+                            person.getFirstName(), person.getLastName(), person.getNumber()),
                     () -> System.out.println(call)
-            );
-        });
+            ));
     }
 }
