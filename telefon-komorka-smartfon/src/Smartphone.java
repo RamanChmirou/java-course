@@ -14,7 +14,7 @@ public class Smartphone extends MobilePhone {
         listOfFriends.add(person);
     }
 
-    private static Optional<Person> callIsFriend(String number) {
+    private static Optional<Person> findInFriend(String number) {
         return listOfFriends.stream()
                 .filter(person -> person.getNumber().equals(number))
                 .findFirst();
@@ -23,7 +23,7 @@ public class Smartphone extends MobilePhone {
     @Override
     public void showCallHistory() {
         callHistory.forEach(call ->
-            callIsFriend(call).ifPresentOrElse(
+                findInFriend(call).ifPresentOrElse(
                     person -> System.out.printf("%s %s %s\n",
                             person.getFirstName(), person.getLastName(), person.getNumber()),
                     () -> System.out.println(call)
