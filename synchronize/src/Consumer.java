@@ -12,7 +12,7 @@ public class Consumer implements Runnable {
                 if (!myQueue.consume()) {
                     break;
                 }
-                int randomTime = (int) (Math.random() * (10000 - 5000) + 5000);
+                int randomTime = (int) (Math.random() * (100 - 50) + 50);
                 Thread.sleep(randomTime);
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());

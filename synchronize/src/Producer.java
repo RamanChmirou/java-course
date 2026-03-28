@@ -11,7 +11,7 @@ public class Producer implements Runnable{
             for (int i = 0; i < 30; i++) {
                 Element element = new Element(String.format("Name %d", i));
                 myQueue.produce(element);
-                int randomTime = (int) (Math.random() * (10000 - 1000) + 1000);
+                int randomTime = (int) (Math.random() * (30 - 10) + 10);
                 Thread.sleep(randomTime);
             }
             myQueue.setFinished(true);

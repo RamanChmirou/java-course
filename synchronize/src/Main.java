@@ -8,7 +8,7 @@ public class Main {
 
         producer.start();
         consumer1.start();
-//        consumer2.start();
-//        consumer3.start();
+        consumer2.start();
+        consumer3.start();
     }
 }
