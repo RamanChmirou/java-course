@@ -3,7 +3,7 @@ import java.util.List;
 
 public class MyQueue {
     private final List<Element> elements = new LinkedList<>();
-    private boolean isFinished;
+    private volatile boolean isFinished;
 
     public synchronized void produce(Element element) throws InterruptedException {
         while (elements.size() >= 5) {
