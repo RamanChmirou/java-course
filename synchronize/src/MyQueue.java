@@ -20,7 +20,7 @@ public class MyQueue {
             }
             elements.add(element);
             System.out.printf("Producent dodał %s.%n", element);
-            notEmpty.signal();
+            notEmpty.signalAll();
         } finally {
             lock.unlock();
         }
